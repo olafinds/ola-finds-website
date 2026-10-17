@@ -4,30 +4,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta name="description" content="Discover OLA FINDS — curated hair accessories, press-on nails, beads, charms, keychains and more.">
-
-  <meta name="theme-color" content="#fbf8f3">
-
-  <title>OLA FINDS | Discover Your Obsession</title>
+  <meta name="theme-color" content="#70283B">
+  <meta name="description" content="Discover OLA FINDS, your curated destination for thoughtful finds, pretty accessories, everyday essentials and little things worth sharing.">
+  <title>OLA FINDS | Explore • Discover • Save</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --burgundy: #70283b;
-      --burgundy-dark: #4b1e2c;
-      --gold: #c5a46d;
-      --ivory: #fbf8f3;
-      --blush: #f5e5e2;
-      --ink: #30272a;
-      --muted: #786d70;
-      --white: #ffffff;
-      --border: #eadbd3;
-      --transition: 300ms ease;
+      --burgundy: #70283B;
+      --burgundy-dark: #4B1E2C;
+      --gold: #C5A46D;
+      --ivory: #FBF8F3;
+      --blush: #F5E5E2;
+      --terracotta: #BF806F;
+      --dusty-pink: #CBA8AD;
+      --seafoam: #76ACA3;
+      --ocean: #41728D;
+      --ink: #30272A;
+      --muted: #786D70;
+      --white: #FFFFFF;
+      --border: #E9DDD7;
+      --shadow: 0 16px 45px rgba(75, 30, 44, 0.09);
+      --transition: 260ms ease;
     }
 
     * {
@@ -38,15 +39,19 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 100px;
+      scroll-padding-top: 95px;
     }
 
     body {
-      font-family: "DM Sans", sans-serif;
-      color: var(--ink);
       background: var(--ivory);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
       line-height: 1.7;
-      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.menu-open {
+      overflow: hidden;
     }
 
     a {
@@ -54,589 +59,645 @@
       text-decoration: none;
     }
 
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    button:focus-visible,
-    a:focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 5px;
-    }
-
     img {
       display: block;
       max-width: 100%;
     }
 
-    /* HEADER */
+    button {
+      font: inherit;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 4px;
+    }
+
+    .announcement {
+      padding: 9px 16px;
+      background: var(--burgundy-dark);
+      color: var(--ivory);
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
 
     .site-header {
       position: sticky;
       top: 0;
-      z-index: 1000;
-      width: 100%;
+      z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      padding: 12px 5%;
-      background: rgba(251, 248, 243, 0.94);
-      border-bottom: 1px solid rgba(197, 164, 109, 0.2);
+      padding: 13px 7%;
+      background: rgba(251, 248, 243, 0.96);
+      border-bottom: 1px solid rgba(197, 164, 109, 0.25);
       backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      animation: headerAppear 700ms ease both;
     }
 
     .brand {
-      display: inline-flex;
+      display: flex;
       align-items: center;
+      gap: 12px;
       flex-shrink: 0;
     }
 
     .brand img {
-      width: 82px;
-      height: 82px;
+      width: 54px;
+      height: 54px;
       object-fit: contain;
-      transition: transform 400ms ease;
     }
 
-    .brand:hover img {
-      transform: rotate(-5deg) scale(1.05);
+    .brand-name {
+      color: var(--burgundy);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 22px;
+      letter-spacing: 3px;
+      line-height: 1.2;
+    }
+
+    .brand-tagline {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: 1.7px;
+      text-transform: uppercase;
     }
 
     .main-nav {
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      flex-wrap: wrap;
-      gap: 28px;
+      gap: 27px;
     }
 
     .nav-link {
-      position: relative;
-      padding: 8px 0;
-      font-size: 13px;
-      font-weight: 500;
+      color: var(--ink);
+      font-size: 12px;
       transition: color var(--transition);
     }
 
-    .nav-link::after {
-      content: "";
-      position: absolute;
-      bottom: 2px;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: var(--gold);
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform var(--transition);
-    }
-
     .nav-link:hover {
-      color: var(--burgundy);
-    }
-
-    .nav-link:hover::after {
-      transform: scaleX(1);
-      transform-origin: left;
+      color: var(--terracotta);
     }
 
     .nav-cta,
     .button {
       display: inline-flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       gap: 8px;
-      padding: 14px 24px;
+      padding: 12px 22px;
       border: 1px solid var(--burgundy);
       background: var(--burgundy);
       color: var(--white);
       font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.1px;
+      letter-spacing: 1.3px;
+      text-align: center;
       text-transform: uppercase;
-      transition:
-        background var(--transition),
-        color var(--transition),
-        transform var(--transition),
-        box-shadow var(--transition);
+      transition: background var(--transition), color var(--transition),
+        transform var(--transition);
+      cursor: pointer;
     }
 
     .nav-cta:hover,
     .button:hover {
       background: var(--burgundy-dark);
-      box-shadow: 0 8px 22px rgba(75, 30, 44, 0.16);
-      transform: translateY(-3px);
+      transform: translateY(-2px);
     }
 
-    /* HERO */
+    .button-outline {
+      background: transparent;
+      color: var(--burgundy);
+    }
+
+    .button-outline:hover {
+      background: var(--burgundy);
+      color: var(--white);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--burgundy);
+      font-size: 23px;
+      cursor: pointer;
+    }
 
     .hero {
       position: relative;
-      isolation: isolate;
-      min-height: 560px;
-      padding: 100px 7% 110px;
       display: grid;
-      place-items: center;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 45px;
+      min-height: 580px;
+      padding: 78px 9%;
       overflow: hidden;
-      text-align: center;
       background:
-        radial-gradient(
-          ellipse at 12% 20%,
-          rgba(231, 190, 190, 0.35),
-          transparent 42%
-        ),
-        radial-gradient(
-          ellipse at 90% 80%,
-          rgba(197, 164, 109, 0.17),
-          transparent 38%
-        ),
-        var(--ivory);
-    }
-
-    .hero::before,
-    .hero::after {
-      content: "✧";
-      position: absolute;
-      z-index: -1;
-      color: var(--gold);
-      font-size: 68px;
-      opacity: 0.55;
-      animation: floatSparkle 5s ease-in-out infinite;
+        radial-gradient(ellipse at 12% 12%, rgba(203, 168, 173, 0.24), transparent 45%),
+        linear-gradient(135deg, #FBF8F3 10%, #F5E5E2 100%);
     }
 
     .hero::before {
-      top: 18%;
-      left: 10%;
+      position: absolute;
+      top: -150px;
+      right: -100px;
+      width: 440px;
+      height: 440px;
+      border: 1px solid rgba(197, 164, 109, 0.3);
+      border-radius: 50%;
+      content: "";
+      pointer-events: none;
     }
 
-    .hero::after {
-      right: 10%;
-      bottom: 16%;
-      font-size: 48px;
-      animation-delay: -2.5s;
-    }
-
-    .hero-content {
-      width: 100%;
-      max-width: 850px;
-      animation: heroEnter 900ms cubic-bezier(.2,.7,.2,1) both;
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 560px;
+      animation: fade-up 850ms ease both;
     }
 
     .eyebrow {
-      margin-bottom: 18px;
-      color: var(--burgundy);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 4px;
+      margin-bottom: 20px;
+      color: var(--terracotta);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
       text-transform: uppercase;
     }
 
     .hero h1 {
-      margin-bottom: 24px;
+      margin-bottom: 23px;
       color: var(--burgundy);
       font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(48px, 7vw, 88px);
-      font-weight: 500;
-      line-height: 1.12;
-      letter-spacing: -2px;
+      font-size: clamp(46px, 6vw, 76px);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -1.5px;
     }
 
-    .hero h1 span {
-      display: block;
-      color: var(--gold);
-      font-style: italic;
+    .hero h1 em {
+      color: var(--terracotta);
+      font-weight: 400;
     }
 
     .hero-description {
-      max-width: 570px;
-      margin: 0 auto 32px;
+      max-width: 430px;
+      margin-bottom: 29px;
       color: var(--muted);
-      font-size: 15px;
+      font-size: 14px;
       line-height: 1.9;
     }
 
-    .hero .button {
-      min-width: 220px;
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
-    /* SECTION HEADINGS */
-
-    .section {
-      padding: 88px 5%;
+    .hero-art {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 390px;
+      animation: fade-up 1s 120ms ease both;
     }
 
-    .section-heading {
-      max-width: 720px;
-      margin: 0 auto 42px;
+    .hero-frame {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: min(100%, 365px);
+      min-height: 360px;
+      padding: 38px;
+      border: 1px solid rgba(197, 164, 109, 0.7);
+      border-radius: 190px 190px 12px 12px;
+      background:
+        radial-gradient(ellipse at 50% 30%, rgba(255,255,255,.9), transparent 65%),
+        linear-gradient(155deg, #F1DAD5, #E7C5C3 55%, #D7B4B2);
+      box-shadow: var(--shadow);
       text-align: center;
     }
 
-    .section-heading .eyebrow {
-      margin-bottom: 12px;
-      color: var(--gold);
+    .hero-frame::before {
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(255,255,255,.65);
+      border-radius: 180px 180px 7px 7px;
+      content: "";
+      pointer-events: none;
     }
 
-    .section-heading h2 {
+    .hero-symbol {
+      margin-bottom: 10px;
       color: var(--burgundy);
       font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(32px, 4vw, 48px);
-      font-weight: 500;
-      line-height: 1.25;
+      font-size: clamp(62px, 8vw, 94px);
+      line-height: 1.2;
     }
 
-    .section-heading p {
-      margin-top: 14px;
-      color: var(--muted);
-      font-size: 14px;
+    .hero-frame h2 {
+      color: var(--burgundy);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 27px;
+      font-weight: 400;
+      letter-spacing: 4px;
     }
 
-    /* COLLECTIONS */
+    .hero-frame p {
+      margin-top: 13px;
+      color: var(--burgundy-dark);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
 
-    .collections {
+    .floating-note {
+      position: absolute;
+      right: -5px;
+      bottom: 38px;
+      padding: 14px 19px;
       background: var(--ivory);
+      box-shadow: var(--shadow);
+      color: var(--burgundy);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 17px;
+      font-style: italic;
+      transform: rotate(-4deg);
+    }
+
+    .section {
+      padding: 92px 8%;
+    }
+
+    .section-heading {
+      max-width: 660px;
+      margin: 0 auto 46px;
+      text-align: center;
+    }
+
+    .section-heading h2,
+    .story-copy h2,
+    .owner-copy h2 {
+      margin-bottom: 16px;
+      color: var(--burgundy);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(34px, 4vw, 49px);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    .section-heading > p:last-child,
+    .story-copy > p,
+    .owner-copy > p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.95;
+    }
+
+    .collection-section {
+      background: var(--white);
     }
 
     .collection-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 25px;
+      max-width: 1180px;
+      margin: 0 auto;
     }
 
     .collection-card {
-      position: relative;
-      display: flex;
-      min-height: 268px;
-      flex-direction: column;
-      align-items: center;
-      padding: 34px 20px 30px;
       overflow: hidden;
       border: 1px solid var(--border);
-      background: var(--white);
-      text-align: center;
-      transition:
-        transform 350ms ease,
-        border-color 350ms ease,
-        box-shadow 350ms ease,
-        background 350ms ease;
-    }
-
-    .collection-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        145deg,
-        rgba(245, 229, 226, 0.7),
-        transparent 58%
-      );
-      opacity: 0;
-      transition: opacity 350ms ease;
-      pointer-events: none;
+      background: var(--ivory);
+      transition: transform var(--transition), box-shadow var(--transition);
     }
 
     .collection-card:hover {
-      transform: translateY(-9px);
-      border-color: var(--gold);
-      box-shadow: 0 16px 35px rgba(75, 30, 44, 0.09);
+      transform: translateY(-7px);
+      box-shadow: var(--shadow);
     }
 
-    .collection-card:hover::before {
-      opacity: 1;
+    .collection-art {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 245px;
+      padding: 25px;
+      overflow: hidden;
     }
 
-    .collection-icon {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      width: 74px;
-      height: 74px;
-      margin-bottom: 20px;
-      place-items: center;
-      border: 1px solid rgba(197, 164, 109, 0.7);
-      border-radius: 50%;
-      background: var(--ivory);
-      color: var(--burgundy);
-      transition:
-        transform 400ms cubic-bezier(.2,.8,.2,1),
-        background 300ms ease,
-        color 300ms ease,
-        box-shadow 300ms ease;
+    .collection-art span {
+      color: rgba(75, 30, 44, 0.8);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 80px;
+      transition: transform 500ms ease;
     }
 
-    .collection-icon svg {
-      width: 32px;
-      height: 32px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+    .collection-card:hover .collection-art span {
+      transform: scale(1.1) rotate(-5deg);
     }
 
-    .collection-card:hover .collection-icon {
-      transform: translateY(-3px) rotate(-7deg) scale(1.09);
-      background: var(--burgundy);
-      color: var(--gold);
-      box-shadow: 0 7px 16px rgba(112, 40, 59, 0.15);
+    .art-pink {
+      background: linear-gradient(145deg, #F5E5E2, #D9B8BC);
     }
 
-    .collection-card h3 {
-      position: relative;
-      z-index: 1;
+    .art-gold {
+      background: linear-gradient(145deg, #F6E9CF, #D8BD8D);
+    }
+
+    .art-green {
+      background: linear-gradient(145deg, #DDEBE5, #9DC5B7);
+    }
+
+    .art-blue {
+      background: linear-gradient(145deg, #E1E9EE, #A9C2D1);
+    }
+
+    .art-terracotta {
+      background: linear-gradient(145deg, #F2DDD4, #C88D79);
+    }
+
+    .art-lilac {
+      background: linear-gradient(145deg, #F0E7F0, #CCB7D0);
+    }
+
+    .collection-info {
+      padding: 23px 21px 25px;
+      text-align: center;
+    }
+
+    .collection-info h3 {
       margin-bottom: 8px;
       color: var(--burgundy);
       font-family: "Playfair Display", Georgia, serif;
       font-size: 23px;
-      font-weight: 500;
+      font-weight: 400;
     }
 
-    .collection-card p {
+    .collection-info p {
+      margin-bottom: 17px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .text-link {
+      display: inline-block;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--gold);
+      color: var(--burgundy);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .text-link:hover {
+      color: var(--terracotta);
+    }
+
+    .story-section {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: center;
+      gap: 65px;
+      background: var(--ivory);
+    }
+
+    .story-art {
       position: relative;
-      z-index: 1;
-      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 370px;
+      padding: 25px;
+      background: linear-gradient(145deg, #E8D1CD, #F5E5E2 60%, #D8B9B8);
+    }
+
+    .story-art::before {
+      position: absolute;
+      inset: 15px;
+      border: 1px solid rgba(112, 40, 59, .28);
+      content: "";
+    }
+
+    .story-art-content {
+      position: relative;
+      color: var(--burgundy);
+      text-align: center;
+    }
+
+    .story-art-content .monogram {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 105px;
+      line-height: 1.2;
+    }
+
+    .story-art-content p {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .story-copy .eyebrow,
+    .owner-copy .eyebrow {
+      margin-bottom: 16px;
+    }
+
+    .story-copy .button,
+    .owner-copy .button {
+      margin-top: 24px;
+    }
+
+    .story-copy .signature {
+      margin-top: 19px;
+      color: var(--terracotta);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 20px;
+      font-style: italic;
+    }
+
+    .owner-section {
+      display: grid;
+      grid-template-columns: 1fr 0.8fr;
+      align-items: center;
+      gap: 60px;
+      background: var(--white);
+    }
+
+    .owner-panel {
+      padding: 38px;
+      border: 1px solid var(--border);
+      background: var(--ivory);
+      text-align: center;
+    }
+
+    .owner-monogram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 115px;
+      height: 115px;
+      margin: 0 auto 22px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      background: var(--blush);
+      color: var(--burgundy);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 48px;
+    }
+
+    .owner-panel h3 {
+      color: var(--burgundy);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 25px;
+      font-weight: 400;
+    }
+
+    .owner-panel p {
+      margin-top: 10px;
       color: var(--muted);
       font-size: 12px;
     }
 
-    .explore-link {
-      position: relative;
-      z-index: 1;
-      margin-top: auto;
-      color: var(--burgundy);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1.3px;
-      text-transform: uppercase;
-      transition: letter-spacing 250ms ease;
-    }
-
-    .explore-link span {
-      display: inline-block;
-      transition: transform 250ms ease;
-    }
-
-    .collection-card:hover .explore-link {
-      letter-spacing: 1.7px;
-    }
-
-    .collection-card:hover .explore-link span {
-      transform: translateX(5px);
-    }
-
-    /* SOON CARD */
-
-    .collection-card.soon-card {
-      background:
-        linear-gradient(
-          145deg,
-          rgba(245, 229, 226, 0.75),
-          rgba(255, 255, 255, 0.85)
-        );
-      border-style: dashed;
-    }
-
-    .soon-card .collection-icon {
-      border-style: dashed;
-    }
-
-    .soon-label {
-      display: inline-block;
-      position: relative;
-      z-index: 1;
-      margin-top: auto;
-      padding: 5px 12px;
-      border: 1px solid rgba(197, 164, 109, 0.65);
-      color: var(--burgundy);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    /* MY FINDS */
-
-    .my-finds {
-      background: linear-gradient(135deg, var(--blush), #f9eee9);
-    }
-
-    .finds-content {
-      max-width: 720px;
-      margin: 0 auto;
+    .social-section {
+      padding: 76px 8%;
+      background: var(--burgundy-dark);
+      color: var(--ivory);
       text-align: center;
     }
 
-    .finds-content p {
-      margin: 16px auto 28px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    /* ABOUT */
-
-    .about {
-      background: var(--ivory);
-    }
-
-    .about-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 70px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .about-mark {
-      position: relative;
-      display: grid;
-      min-height: 310px;
-      padding: 30px;
-      place-items: center;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background:
-        radial-gradient(
-          circle at 50% 50%,
-          rgba(245, 229, 226, 0.95),
-          rgba(251, 248, 243, 0.45) 68%
-        );
-    }
-
-    .about-mark::before,
-    .about-mark::after {
-      content: "✧";
-      position: absolute;
-      color: var(--gold);
-      font-size: 44px;
-      opacity: 0.8;
-      animation: floatSparkle 5s ease-in-out infinite;
-    }
-
-    .about-mark::before {
-      top: 24px;
-      left: 26px;
-    }
-
-    .about-mark::after {
-      right: 26px;
-      bottom: 24px;
-      animation-delay: -2s;
-    }
-
-    .about-mark img {
-      width: min(230px, 75%);
-      height: auto;
-      border-radius: 50%;
-      filter: drop-shadow(0 10px 16px rgba(75, 30, 44, 0.08));
-      transition: transform 450ms ease;
-    }
-
-    .about-mark:hover img {
-      transform: scale(1.05) rotate(3deg);
-    }
-
-    .about-copy .eyebrow {
+    .social-section .eyebrow {
       color: var(--gold);
     }
 
-    .about-copy h2 {
-      margin-bottom: 20px;
-      color: var(--burgundy);
+    .social-section h2 {
+      margin-bottom: 17px;
       font-family: "Playfair Display", Georgia, serif;
       font-size: clamp(34px, 4vw, 48px);
-      font-weight: 500;
+      font-weight: 400;
       line-height: 1.25;
     }
 
-    .about-copy p {
-      margin-bottom: 18px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .about-signature {
-      color: var(--gold) !important;
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: 22px !important;
-      font-style: italic;
-    }
-
-    /* FOOTER */
-
-    .site-footer {
-      padding: 54px 5% 24px;
-      background: var(--burgundy-dark);
-      color: var(--white);
-      text-align: center;
-    }
-
-    .footer-logo {
-      width: 112px;
-      height: 112px;
-      margin: 0 auto 18px;
-      object-fit: contain;
-      border-radius: 50%;
-      transition: transform 400ms ease;
-    }
-
-    .footer-logo:hover {
-      transform: rotate(5deg) scale(1.05);
-    }
-
-    .footer-tagline {
-      margin-bottom: 22px;
-      color: var(--gold);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+    .social-section > p {
+      max-width: 540px;
+      margin: 0 auto 25px;
+      color: rgba(251, 248, 243, .78);
+      font-size: 13px;
     }
 
     .social-links {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 24px;
-      margin-bottom: 30px;
+      gap: 12px;
     }
 
     .social-links a {
-      color: rgba(255, 255, 255, 0.88);
-      font-size: 13px;
-      transition: color var(--transition);
+      min-width: 140px;
+      padding: 12px 20px;
+      border: 1px solid rgba(197, 164, 109, .75);
+      color: var(--ivory);
+      font-size: 11px;
+      letter-spacing: 1px;
+      transition: background var(--transition), color var(--transition);
     }
 
     .social-links a:hover {
-      color: var(--gold);
+      background: var(--gold);
+      color: var(--burgundy-dark);
     }
 
-    .affiliate-disclosure {
-      max-width: 800px;
-      margin: 0 auto 30px;
-      color: rgba(255, 255, 255, 0.72);
+    .disclosure {
+      padding: 25px 8%;
+      border-bottom: 1px solid var(--border);
+      background: #F2EDE5;
+    }
+
+    .disclosure h2 {
+      margin-bottom: 6px;
+      color: var(--burgundy);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .disclosure p {
+      max-width: 1100px;
+      color: var(--muted);
       font-size: 11px;
-      line-height: 1.8;
+      line-height: 1.9;
+    }
+
+    .site-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      padding: 30px 8%;
+      background: var(--ivory);
+    }
+
+    .footer-brand {
+      color: var(--burgundy);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 20px;
+      letter-spacing: 2px;
+    }
+
+    .footer-note {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 19px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .footer-links a:hover {
+      color: var(--burgundy);
     }
 
     .copyright {
-      padding-top: 22px;
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 11px;
+      padding: 13px 20px;
+      background: #F2EDE5;
+      color: var(--muted);
+      font-size: 10px;
+      text-align: center;
     }
 
-    /* SCROLL REVEAL */
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
 
     .js-motion .reveal {
       opacity: 0;
-      transform: translateY(28px);
-      transition:
-        opacity 750ms ease,
-        transform 750ms cubic-bezier(.2,.7,.2,1);
+      transform: translateY(22px);
+      transition: opacity 700ms ease, transform 700ms ease;
     }
 
     .js-motion .reveal.is-visible {
@@ -644,24 +705,10 @@
       transform: translateY(0);
     }
 
-    .collection-card.reveal:nth-child(2) {
-      transition-delay: 100ms;
-    }
-
-    .collection-card.reveal:nth-child(3) {
-      transition-delay: 200ms;
-    }
-
-    .collection-card.reveal:nth-child(4) {
-      transition-delay: 300ms;
-    }
-
-    /* ANIMATIONS */
-
-    @keyframes heroEnter {
+    @keyframes fade-up {
       from {
         opacity: 0;
-        transform: translateY(22px);
+        transform: translateY(20px);
       }
       to {
         opacity: 1;
@@ -669,166 +716,213 @@
       }
     }
 
-    @keyframes headerAppear {
-      from {
-        opacity: 0;
-        transform: translateY(-12px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes floatSparkle {
-      0%, 100% {
-        transform: translateY(0) rotate(0deg);
-      }
-      50% {
-        transform: translateY(-12px) rotate(12deg);
-      }
-    }
-
-    /* RESPONSIVE */
-
-    @media (max-width: 1000px) {
-      .collection-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .about-inner {
-        gap: 38px;
-      }
-
-      .hero {
-        min-height: 500px;
-      }
-    }
-
-    @media (max-width: 640px) {
+    @media (max-width: 1050px) {
       .site-header {
-        padding: 10px 5%;
-        gap: 12px;
-      }
-
-      .brand img {
-        width: 64px;
-        height: 64px;
+        padding-inline: 5%;
       }
 
       .main-nav {
-        gap: 12px;
-      }
-
-      .nav-link {
-        font-size: 11px;
-      }
-
-      .nav-cta {
-        padding: 10px 12px;
-        font-size: 9px;
-        letter-spacing: 0.6px;
+        gap: 15px;
       }
 
       .hero {
-        min-height: 490px;
-        padding: 75px 6%;
-      }
-
-      .hero h1 {
-        letter-spacing: -1px;
-      }
-
-      .hero-description {
-        font-size: 13px;
-      }
-
-      .hero::before {
-        left: 3%;
-        font-size: 42px;
-      }
-
-      .hero::after {
-        right: 4%;
-        font-size: 36px;
+        padding-inline: 6%;
       }
 
       .section {
-        padding: 64px 5%;
+        padding: 75px 6%;
       }
 
-      .section-heading {
-        margin-bottom: 30px;
-      }
-
-      .collection-grid {
-        gap: 12px;
-      }
-
-      .collection-card {
-        min-height: 250px;
-        padding: 25px 12px;
-      }
-
-      .collection-icon {
-        width: 62px;
-        height: 62px;
-      }
-
-      .collection-icon svg {
-        width: 27px;
-        height: 27px;
-      }
-
-      .collection-card h3 {
-        font-size: 19px;
-      }
-
-      .collection-card p {
-        font-size: 11px;
-      }
-
-      .explore-link {
-        font-size: 9px;
-      }
-
-      .about-inner {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .about-mark {
-        min-height: 250px;
-      }
-
-      .about-mark img {
-        width: 185px;
-      }
-
-      .about-copy {
-        text-align: center;
-      }
-
-      .site-footer {
-        padding-top: 42px;
+      .story-section,
+      .owner-section {
+        gap: 35px;
       }
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 760px) {
+      html {
+        scroll-padding-top: 80px;
+      }
+
+      .announcement {
+        font-size: 9px;
+        letter-spacing: 1.2px;
+      }
+
+      .site-header {
+        padding: 10px 5%;
+      }
+
+      .brand img {
+        width: 44px;
+        height: 44px;
+      }
+
+      .brand-name {
+        font-size: 19px;
+      }
+
+      .brand-tagline {
+        font-size: 8px;
+        letter-spacing: 1px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
       .main-nav {
-        gap: 8px;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px 5% 22px;
+        border-bottom: 1px solid var(--border);
+        background: var(--ivory);
+        box-shadow: var(--shadow);
+      }
+
+      .main-nav.is-open {
+        display: flex;
       }
 
       .nav-link {
-        font-size: 10px;
+        padding: 12px 5px;
+        border-bottom: 1px solid var(--border);
       }
 
       .nav-cta {
-        padding: 9px;
+        margin-top: 14px;
       }
 
-      .collection-card {
-        padding-inline: 8px;
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 64px 7% 50px;
+        text-align: center;
+      }
+
+      .hero-copy {
+        margin: 0 auto;
+      }
+
+      .hero h1 {
+        font-size: clamp(43px, 12vw, 63px);
+      }
+
+      .hero-description {
+        margin-inline: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-art {
+        min-height: 320px;
+      }
+
+      .hero-frame {
+        width: min(88%, 340px);
+        min-height: 310px;
+      }
+
+      .floating-note {
+        right: 0;
+        bottom: 15px;
+        font-size: 14px;
+      }
+
+      .section {
+        padding: 65px 6%;
+      }
+
+      .section-heading {
+        margin-bottom: 32px;
+      }
+
+      .collection-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 13px;
+      }
+
+      .collection-art {
+        min-height: 170px;
+      }
+
+      .collection-art span {
+        font-size: 59px;
+      }
+
+      .collection-info {
+        padding: 17px 12px 20px;
+      }
+
+      .collection-info h3 {
+        font-size: 20px;
+      }
+
+      .collection-info p {
+        font-size: 11px;
+      }
+
+      .story-section,
+      .owner-section {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .story-art {
+        min-height: 280px;
+      }
+
+      .owner-panel {
+        padding: 30px 20px;
+      }
+
+      .social-section {
+        padding: 60px 6%;
+      }
+
+      .disclosure {
+        padding: 23px 6%;
+      }
+
+      .site-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 27px 6%;
+      }
+
+      .footer-links {
+        gap: 14px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .brand {
+        gap: 7px;
+      }
+
+      .brand-name {
+        font-size: 17px;
+        letter-spacing: 2px;
+      }
+
+      .collection-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .collection-art {
+        min-height: 200px;
+      }
+
+      .hero-actions .button {
+        width: 100%;
       }
     }
 
@@ -851,220 +945,303 @@
 </head>
 
 <body>
+  <div class="announcement">
+    A little discovery goes a long way · Welcome to OLA FINDS
+  </div>
 
-  <!-- HEADER -->
   <header class="site-header">
     <a class="brand" href="#home" aria-label="OLA FINDS home">
       <img src="ola-finds-logo.png" alt="OLA FINDS logo">
+      <span>
+        <span class="brand-name">OLA FINDS</span>
+        <span class="brand-tagline">Explore • Discover • Save</span>
+      </span>
     </a>
 
-    <nav class="main-nav" aria-label="Main navigation">
-      <a class="nav-link" href="#collections">Discover</a>
-      <a class="nav-link" href="#my-finds">My Finds</a>
+    <button class="menu-toggle" id="menu-toggle"
+      type="button" aria-label="Open navigation menu"
+      aria-expanded="false" aria-controls="main-nav">
+      ☰
+    </button>
+
+    <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+      <a class="nav-link" href="#home">Home</a>
+      <a class="nav-link" href="#collections">Collections</a>
       <a class="nav-link" href="#our-story">Our Story</a>
-      <a class="nav-cta" href="https://www.instagram.com/hello.olafinds/" target="_blank" rel="noopener noreferrer">Follow Us</a>
+      <a class="nav-link" href="#about-owner">About the Owner</a>
+      <a class="nav-cta" href="#social">Let's Connect</a>
     </nav>
   </header>
 
   <main>
     <!-- HERO -->
     <section class="hero" id="home">
-      <div class="hero-content">
-        <p class="eyebrow">Welcome to OLA FINDS</p>
-
-        <h1>
-          Discover Your
-          <span>Obsession.</span>
-        </h1>
-
+      <div class="hero-copy">
+        <p class="eyebrow">Your next favorite find starts here</p>
+        <h1>Little things.<br>Lovely <em>discoveries.</em></h1>
         <p class="hero-description">
-          Your next favorite find starts here. Discover pieces
-          that bring a little extra joy to your everyday style.
+          Welcome to OLA FINDS, your curated corner for pretty accessories,
+          thoughtful finds and everyday little things that bring a little
+          extra joy to your day.
         </p>
+        <div class="hero-actions">
+          <a class="button" href="#collections">Explore Our Finds</a>
+          <a class="button button-outline" href="#our-story">Our Story</a>
+        </div>
+      </div>
 
-        <a class="button" href="#collections">
-          Explore the Collections
-        </a>
+      <div class="hero-art" aria-label="OLA FINDS brand artwork">
+        <div class="hero-frame">
+          <div class="hero-symbol" aria-hidden="true">O.</div>
+          <h2>OLA FINDS</h2>
+          <p>Explore • Discover • Save</p>
+        </div>
+        <div class="floating-note">Something lovely awaits ✧</div>
       </div>
     </section>
 
     <!-- COLLECTIONS -->
-    <section class="section collections" id="collections">
+    <section class="section collection-section" id="collections">
       <div class="section-heading reveal">
-        <p class="eyebrow">Explore Our Finds</p>
-        <h2>OLA FINDS COLLECTION</h2>
+        <p class="eyebrow">The things we love</p>
+        <h2>Discover Your Next Find</h2>
+        <p>
+          From little accessories to everyday essentials, explore the
+          categories we're excited about. More discoveries are on the way.
+        </p>
       </div>
 
       <div class="collection-grid">
-
-        <!-- HAIR ACCESSORIES -->
-        <a class="collection-card reveal" href="#my-finds">
-          <div class="collection-icon" aria-hidden="true">
-            <svg viewBox="0 0 32 32">
-              <path d="M16 14.5C12 9 7 7 5 10c-2 3 2 6 7 6-5 0-9 3-7 6 2 3 7 1 11-4.5"/>
-              <path d="M16 14.5C20 9 25 7 27 10c2 3-2 6-7 6 5 0 9 3 7 6-2 3-7 1-11-4.5"/>
-              <path d="M14 15l-2 7 4-2 4 2-2-7"/>
-              <path d="M16 14v3"/>
-            </svg>
+        <article class="collection-card reveal">
+          <div class="collection-art art-pink" aria-hidden="true">
+            <span>✿</span>
           </div>
-
-          <h3>Hair Accessories</h3>
-          <p>Clips, scrunchies and everyday favorites.</p>
-          <span class="explore-link">Explore <span>→</span></span>
-        </a>
-
-        <!-- PRESS-ON NAILS -->
-        <a class="collection-card reveal" href="#my-finds">
-          <div class="collection-icon" aria-hidden="true">
-            <svg viewBox="0 0 32 32">
-              <path d="M7 25l15-15 4 4L11 29H7z"/>
-              <path d="M19 13l4 4"/>
-              <path d="M23 5v5M20.5 7.5h5"/>
-              <path d="M8 9v4M6 11h4"/>
-              <path d="M25 22v4M23 24h4"/>
-            </svg>
+          <div class="collection-info">
+            <h3>Hair Accessories</h3>
+            <p>Clips, scrunchies and pretty details for every day.</p>
+            <a class="text-link" href="#social">Explore the Edit</a>
           </div>
+        </article>
 
-          <h3>Press-On Nails</h3>
-          <p>Fresh looks at your fingertips.</p>
-          <span class="explore-link">Explore <span>→</span></span>
-        </a>
-
-        <!-- BEADS & CHARMS -->
-        <a class="collection-card reveal" href="#my-finds">
-          <div class="collection-icon" aria-hidden="true">
-            <svg viewBox="0 0 32 32">
-              <path d="M16 3L27 12 16 29 5 12 16 3z"/>
-              <path d="M5 12h22"/>
-              <path d="M16 3l-4 9 4 17 4-17-4-9z"/>
-            </svg>
+        <article class="collection-card reveal">
+          <div class="collection-art art-gold" aria-hidden="true">
+            <span>✧</span>
           </div>
-
-          <h3>Beads &amp; Charms</h3>
-          <p>Colorful details to create your own.</p>
-          <span class="explore-link">Explore <span>→</span></span>
-        </a>
-
-        <!-- KEYCHAINS -->
-        <a class="collection-card reveal" href="#my-finds">
-          <div class="collection-icon" aria-hidden="true">
-            <svg viewBox="0 0 32 32">
-              <path d="M16 27S4 20 4 11.5C4 5 12 3 16 9c4-6 12-4 12 2.5C28 20 16 27 16 27z"/>
-            </svg>
+          <div class="collection-info">
+            <h3>Press-On Nails</h3>
+            <p>Easy beauty finds for your own little at-home moment.</p>
+            <a class="text-link" href="#social">Explore the Edit</a>
           </div>
+        </article>
 
-          <h3>Keychains</h3>
-          <p>Small accessories with personality.</p>
-          <span class="explore-link">Explore <span>→</span></span>
-        </a>
-
-        <!-- FUTURE COLLECTION PLACEHOLDER
-             Duplicate this card when you introduce a new category. -->
-        <div class="collection-card soon-card reveal">
-          <div class="collection-icon" aria-hidden="true">
-            <svg viewBox="0 0 32 32">
-              <circle cx="16" cy="16" r="10"/>
-              <path d="M16 10v12M10 16h12"/>
-            </svg>
+        <article class="collection-card reveal">
+          <div class="collection-art art-green" aria-hidden="true">
+            <span>❋</span>
           </div>
+          <div class="collection-info">
+            <h3>Charms & Keychains</h3>
+            <p>Small details that make your everyday items feel personal.</p>
+            <a class="text-link" href="#social">Explore the Edit</a>
+          </div>
+        </article>
 
-          <h3>More to Love</h3>
-          <p>New discoveries are on the way.</p>
-          <span class="soon-label">Coming Soon</span>
-        </div>
+        <article class="collection-card reveal">
+          <div class="collection-art art-blue" aria-hidden="true">
+            <span>◇</span>
+          </div>
+          <div class="collection-info">
+            <h3>Everyday Essentials</h3>
+            <p>Useful little finds for your daily routine.</p>
+            <a class="text-link" href="#social">Explore the Edit</a>
+          </div>
+        </article>
 
+        <article class="collection-card reveal">
+          <div class="collection-art art-terracotta" aria-hidden="true">
+            <span>♡</span>
+          </div>
+          <div class="collection-info">
+            <h3>Gifts & Goodies</h3>
+            <p>Thoughtful ideas for yourself and people you love.</p>
+            <a class="text-link" href="#social">Explore the Edit</a>
+          </div>
+        </article>
+
+        <article class="collection-card reveal">
+          <div class="collection-art art-lilac" aria-hidden="true">
+            <span>✦</span>
+          </div>
+          <div class="collection-info">
+            <h3>More to Discover</h3>
+            <p>New categories and interesting finds as we grow.</p>
+            <a class="text-link" href="#social">Stay Connected</a>
+          </div>
+        </article>
       </div>
     </section>
 
-    <!-- MY FINDS -->
-    <section class="section my-finds" id="my-finds">
-      <div class="finds-content reveal">
-        <p class="eyebrow">Handpicked Discoveries</p>
-        <h2 class="section-heading" style="margin-bottom: 0;">
-          <span style="color: var(--burgundy); font-family: 'Playfair Display', Georgia, serif; font-size: clamp(32px, 4vw, 48px); font-weight: 500;">
-            My Finds
-          </span>
-        </h2>
+    <!-- ABOUT OLA FINDS -->
+    <section class="section story-section" id="our-story">
+      <div class="story-art reveal" aria-hidden="true">
+        <div class="story-art-content">
+          <div class="monogram">O.</div>
+          <p>Thoughtfully discovered</p>
+        </div>
+      </div>
 
+      <div class="story-copy reveal">
+        <p class="eyebrow">A little about us</p>
+        <h2>More Than Just a Find</h2>
         <p>
-          We're putting together a collection of finds worth sharing.
-          Check back soon for product recommendations and shopping links.
+          OLA FINDS began with a simple idea: discovering something lovely
+          doesn't have to be complicated. Sometimes it's a practical
+          everyday essential. Sometimes it's a little accessory that makes
+          you smile.
         </p>
+        <p style="margin-top: 15px;">
+          We're creating a space for curated discoveries, creative
+          inspiration and products worth exploring. Our goal is to make
+          finding your next favorite thing feel easy, enjoyable and personal.
+        </p>
+        <p class="signature">Explore. Discover. Save.</p>
+      </div>
+    </section>
 
-        <a class="button" href="https://www.instagram.com/hello.olafinds/" target="_blank" rel="noopener noreferrer">
-          Discover Us on Instagram
+    <!-- ABOUT THE OWNER -->
+    <section class="section owner-section" id="about-owner">
+      <div class="owner-copy reveal">
+        <p class="eyebrow">The person behind the finds</p>
+        <h2>A Personal Touch in Every Discovery</h2>
+        <p>
+          OLA FINDS is a personal passion project built around curiosity,
+          creativity and the joy of finding little things worth sharing.
+          Every new category is an opportunity to explore something
+          different and connect with people who enjoy discovering new things.
+        </p>
+        <p style="margin-top: 15px;">
+          This brand will keep evolving, one thoughtful discovery at a time.
+          Thank you for being here and being part of the journey.
+        </p>
+        <a class="button" href="https://www.instagram.com/hello.olafinds/"
+          target="_blank" rel="noopener noreferrer">
+          Say Hello on Instagram
+        </a>
+      </div>
+
+      <div class="owner-panel reveal">
+        <div class="owner-monogram" aria-hidden="true">O.</div>
+        <h3>Created with Curiosity</h3>
+        <p>
+          A growing collection of finds, ideas and little things to love.
+        </p>
+      </div>
+    </section>
+
+    <!-- SOCIAL -->
+    <section class="social-section" id="social">
+      <p class="eyebrow">Let's be friends</p>
+      <h2>Your Next Find Could Be One Scroll Away</h2>
+      <p>
+        Follow along for product discoveries, inspiration and updates
+        from OLA FINDS. New finds and new ideas are always welcome.
+      </p>
+      <div class="social-links">
+        <a href="https://www.instagram.com/hello.olafinds/"
+          target="_blank" rel="noopener noreferrer"
+          aria-label="Follow OLA FINDS on Instagram">
+          Instagram ↗
+        </a>
+        <a href="https://www.tiktok.com/@hello.olafinds"
+          target="_blank" rel="noopener noreferrer"
+          aria-label="Follow OLA FINDS on TikTok">
+          TikTok ↗
         </a>
       </div>
     </section>
 
-    <!-- OUR STORY -->
-    <section class="section about" id="our-story">
-      <div class="about-inner">
-
-        <div class="about-mark reveal">
-          <img src="ola-finds-logo.png" alt="OLA FINDS emblem">
-        </div>
-
-        <div class="about-copy reveal">
-          <p class="eyebrow">A Little About Us</p>
-
-          <h2>Your Style.<br>Your Finds.</h2>
-
-          <p>
-            OLA FINDS is a curated discovery space for accessories,
-            creative details and everyday favorites. It's about finding
-            those little things that catch your eye and feel like you.
-          </p>
-
-          <p class="about-signature">
-            Explore • Discover • Save
-          </p>
-        </div>
-
-      </div>
+    <!-- AFFILIATE DISCLOSURE -->
+    <section class="disclosure" id="affiliate-disclosure"
+      aria-labelledby="disclosure-title">
+      <h2 id="disclosure-title">Affiliate Disclosure</h2>
+      <p>
+        As an Amazon Associate I earn from qualifying purchases. OLA FINDS
+        may participate in affiliate programs, which means we may earn a
+        commission when you purchase through qualifying affiliate links,
+        at no additional cost to you. Affiliate links will be clearly
+        identified when product recommendations are published. Our goal
+        is to share useful and interesting finds with our community.
+      </p>
     </section>
   </main>
 
   <!-- FOOTER -->
   <footer class="site-footer">
-    <a href="#home" aria-label="Return to top">
-      <img
-        class="footer-logo"
-        src="ola-finds-logo.png"
-        alt="OLA FINDS logo"
-      >
-    </a>
-
-    <p class="footer-tagline">Discover Your Obsession</p>
-
-    <div class="social-links">
-      <a href="https://www.instagram.com/hello.olafinds/" target="_blank" rel="noopener noreferrer">
-        Instagram @hello.olafinds
-      </a>
-
-      <a href="https://www.tiktok.com/@hello.olafinds" target="_blank" rel="noopener noreferrer">
-        TikTok @hello.olafinds
-      </a>
+    <div>
+      <a class="footer-brand" href="#home">OLA FINDS</a>
+      <p class="footer-note">Explore • Discover • Save</p>
     </div>
 
-    <p class="affiliate-disclosure">
-      As an Amazon Associate I earn from qualifying purchases.
-      Affiliate links will be clearly identified when products are added.
-    </p>
-
-    <p class="copyright">
-      © <span id="year">2026</span> OLA FINDS. All rights reserved.
-      Explore • Discover • Save.
-    </p>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="#home">Home</a>
+      <a href="#collections">Collections</a>
+      <a href="#our-story">Our Story</a>
+      <a href="#about-owner">About the Owner</a>
+      <a href="#affiliate-disclosure">Affiliate Disclosure</a>
+    </nav>
   </footer>
 
+  <div class="copyright">
+    © <span id="year"></span> OLA FINDS. All rights reserved.
+  </div>
+
   <script>
-    // Enable scroll-reveal animations only when JavaScript is available.
-    document.documentElement.classList.add("js-motion");
+    // Automatically update the copyright year.
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
 
-    const revealItems = document.querySelectorAll(".reveal");
+    // Mobile navigation.
+    const menuToggle = document.getElementById("menu-toggle");
+    const mainNav = document.getElementById("main-nav");
 
-    if ("IntersectionObserver" in window) {
+    function closeMenu() {
+      mainNav.classList.remove("is-open");
+      document.body.classList.remove("menu-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Open navigation menu");
+      menuToggle.textContent = "☰";
+    }
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = mainNav.classList.toggle("is-open");
+
+      document.body.classList.toggle("menu-open", isOpen);
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation menu" : "Open navigation menu"
+      );
+      menuToggle.textContent = isOpen ? "×" : "☰";
+    });
+
+    mainNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 760) {
+        closeMenu();
+      }
+    });
+
+    // Reveal sections as they enter the viewport.
+    // Content remains visible if animations are unavailable or disabled.
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if ("IntersectionObserver" in window && !reduceMotion) {
+      document.documentElement.classList.add("js-motion");
+
       const observer = new IntersectionObserver(
         (entries, currentObserver) => {
           entries.forEach((entry) => {
@@ -1076,19 +1253,14 @@
         },
         {
           threshold: 0.12,
-          rootMargin: "0px 0px -35px 0px"
+          rootMargin: "0px 0px -25px 0px"
         }
       );
 
-      revealItems.forEach((item) => observer.observe(item));
-    } else {
-      revealItems.forEach((item) => item.classList.add("is-visible"));
+      document.querySelectorAll(".reveal").forEach((element) => {
+        observer.observe(element);
+      });
     }
-
-    // Keep the copyright year current.
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
   </script>
-
 </body>
 </html>
